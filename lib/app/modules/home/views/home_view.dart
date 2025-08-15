@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
@@ -13,10 +14,17 @@ class HomeView extends GetView<HomeController> {
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) => Padding(
-          padding:  EdgeInsets.only(right: 10.0,left: 10.0,top: 10, bottom: index==9?60:5),
+          padding: EdgeInsets.only(
+            right: 10.0,
+            left: 10.0,
+            top: 10,
+            bottom: index == 9 ? 60 : 5,
+          ),
           child: Card(
-          
             child: ListTile(
+              onTap: () {
+                Get.toNamed(Routes.ADD_AND_EDIT,arguments: 'Edit');
+              },
               title: Text('Todo Item $index'),
               subtitle: const Text('This is a todo item description.'),
               trailing: IconButton(
@@ -32,6 +40,7 @@ class HomeView extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Handle add action
+          Get.toNamed(Routes.ADD_AND_EDIT,arguments: 'Add');
         },
         child: const Icon(Icons.add),
       ),
