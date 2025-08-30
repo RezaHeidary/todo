@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_application_1/app/core/theme.dart';
+import 'package:flutter_application_1/app/data/srevise/main_service.dart';
 
 import 'package:get/get.dart';
 
 import 'app/routes/app_pages.dart';
 
 Future<void> main() async {
-  //await initial(); 
-  //await Get.find<MatrialAppService>().getInit();
+  await initial(); 
+  await Get.find<MatrialAppService>().getInit();
+  
   runApp(
     const MyApp(),
   );
@@ -17,9 +19,9 @@ Future<void> main() async {
 
 
 
-// Future initial() async {
-//   Get.put(MatrialAppService());
-// }
+Future initial() async {
+  Get.put(MatrialAppService());
+}
 
 
 

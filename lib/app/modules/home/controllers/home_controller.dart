@@ -1,23 +1,16 @@
+import 'package:flutter_application_1/app/data/model/todo_model.dart';
 import 'package:get/get.dart';
+import 'package:hive_ce/hive.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  var box = Hive.box<TodoModel>('todos');
+  var todos = <TodoModel>[].obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-  }
+todos.value = box.values.toList().reversed.toList();
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+ }
 }
