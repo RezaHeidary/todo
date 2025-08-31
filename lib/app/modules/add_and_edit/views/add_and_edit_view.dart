@@ -9,8 +9,9 @@ class AddAndEditView extends GetView<AddAndEditController> {
   @override
   Widget build(BuildContext context) {
     final theme = Get.theme;
+
     return Scaffold(
-      appBar: AppBar(title: Text(controller.title), centerTitle: true),
+      appBar: AppBar(title: Text(controller.appBarTitle), centerTitle: true),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -27,6 +28,7 @@ class AddAndEditView extends GetView<AddAndEditController> {
               child: TextField(
                 controller: controller.descriptionTextEditingController,
                 maxLines: 7,
+                
                 decoration: InputDecoration(labelText: 'description'),
               ),
             ),
@@ -39,7 +41,11 @@ class AddAndEditView extends GetView<AddAndEditController> {
                 ),
               ),
               onPressed: () {
-           controller.addTodo();
+                if (controller.appBarTitle == 'Edit') {
+                  controller.editTodo();
+                } else {
+                  controller.addTodo();
+                }
               },
               child: Text('Save', style: theme.textTheme.labelMedium),
             ),

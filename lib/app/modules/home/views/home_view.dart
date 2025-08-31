@@ -24,7 +24,19 @@ class HomeView extends GetView<HomeController> {
             child: Card(
               child: ListTile(
                 onTap: () {
-                  Get.toNamed(Routes.ADD_AND_EDIT, arguments: 'Edit');
+                  Get.toNamed(
+                    Routes.ADD_AND_EDIT,
+                    arguments: [
+                      'Edit',
+                      controller.todos[index].title,
+                      controller.todos[index].decoration,
+                      controller.box.length - 1 - index,
+                    ],
+                  )?.then((value) {
+                    if (value) {
+                      controller.initTodos();
+                    }
+                  });
                 },
                 title: Text(controller.todos[index].title),
                 subtitle: Text(controller.todos[index].decoration),
@@ -34,7 +46,6 @@ class HomeView extends GetView<HomeController> {
                     int realIndex = controller.box.length - 1 - index;
                     controller.box.deleteAt(realIndex);
                     controller.todos.removeAt(index);
-                    
                   },
                 ),
               ),
@@ -44,7 +55,13 @@ class HomeView extends GetView<HomeController> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // Handle add action
-            Get.toNamed(Routes.ADD_AND_EDIT, arguments: 'Add');
+            Get.toNamed(Routes.ADD_AND_EDIT, arguments: ['Add', '', ''])?.then((
+              value,
+            ) {
+              if (value) {
+                controller.initTodos();
+              }
+            });
           },
           child: const Icon(Icons.add),
         ),

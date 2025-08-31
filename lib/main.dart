@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
      // translationsKeys: AppTranslation.translations,
       debugShowCheckedModeBanner: false,
       theme: Themes.lightTheme,
-      title: "Hydro Machine",
+      title: "Todo",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
     );
